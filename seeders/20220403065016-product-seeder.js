@@ -31,7 +31,7 @@ module.exports = {
         image_name: "Mouse.jpg",
         image_url:
           "https://thermaltake.azureedge.net/pub/media/catalog/product/cache/6bf0ed99c663954fafc930039201ed07/l/2/l20m01.jpg",
-        category_id: 5,
+        category_id: 1,
       },
       {
         name: "Keyboard",
@@ -47,7 +47,7 @@ module.exports = {
         image_name: "Keyboard.jpg",
         image_url:
           "https://jete.id/wp-content/uploads/2021/09/03.-keyboard-gaming-keyboad-komputer-762x400.jpg",
-        category_id: 6,
+        category_id: 2,
       },
       {
         name: "Bag",
@@ -62,7 +62,7 @@ module.exports = {
         stock: 500,
         image_name: "Bag.jpg",
         image_url: "https://rohan.imgix.net/product/04910565.jpg",
-        category_id: 7,
+        category_id: 3,
       },
       {
         name: "Stationary",
@@ -78,7 +78,7 @@ module.exports = {
         image_name: "Stationary.jpg",
         image_url:
           "https://5.imimg.com/data5/NN/SE/OX/SELLER-11524350/mahadev-gift-and-stationary-vadgoan-belgaum-belgaum-wnsxb-500x500.jpg",
-        category_id: 8,
+        category_id: 4,
       },
       {
         name: "Doll",
@@ -94,7 +94,7 @@ module.exports = {
         image_name: "Doll.jpg",
         image_url:
           "https://upload.wikimedia.org/wikipedia/id/d/d1/The_Doll.jpg",
-        category_id: 5,
+        category_id: 1,
       },
     ]);
   },

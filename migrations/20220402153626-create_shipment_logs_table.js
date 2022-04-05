@@ -29,7 +29,7 @@ module.exports = {
       },
       status: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
       },
       description: {
         type: Sequelize.TEXT,
@@ -37,6 +37,10 @@ module.exports = {
       },
       shipment: {
         type: Sequelize.STRING,
+        allowNull: true,
+      },
+      cost: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
       created_at: {

@@ -9,7 +9,7 @@ const Joi = require("joi");
  */
 module.exports = async (req, res) => {
   try {
-    const { user_id } = req.query;
+    const { id: user_id } = req.user;
     const scheme = Joi.object({
       product_id: Joi.number().required(),
       quantity: Joi.number().min(1).required(),

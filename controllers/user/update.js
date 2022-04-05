@@ -9,7 +9,7 @@ const Joi = require("joi");
  */
 module.exports = async (req, res) => {
   try {
-    const { id } = req.params;
+    const { id } = req.user;
 
     const scheme = Joi.object({
       name: Joi.string(),

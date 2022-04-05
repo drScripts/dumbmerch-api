@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.ENUM,
       values: ["pending", "failed", "success"],
       defaultValue: "pending",
-      allowNull: false,
+      allowNull: true,
     },
     user_id: {
       type: DataTypes.INTEGER,
@@ -65,6 +65,11 @@ module.exports = (sequelize, DataTypes) => {
     Transaction.hasMany(models.TransactionItems, {
       foreignKey: "transaction_id",
       as: "transaction_items",
+    });
+
+    Transaction.hasMany(models.TransactionLog, {
+      foreignKey: "transaction_id",
+      as: "transaction_logs",
     });
   };
 

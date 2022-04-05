@@ -11,8 +11,7 @@ module.exports = async (req, res) => {
   try {
     const { id } = req.params;
     const scheme = Joi.object({
-      product_id: Joi.number(),
-      quantity: Joi.number().min(1),
+      quantity: Joi.number().min(-1),
     });
 
     const validation = scheme.validate(req.body);
@@ -32,20 +31,13 @@ module.exports = async (req, res) => {
         message: "Can't find product",
       });
 
-    const { product_id, quantity = 0 } = req.body;
+    const { quantity = 0 } = req.body;
 
-    if (product_id) {
-      const product = await Product.findByPk(product_id);
-      if (!product)
-        return res.status(404).json({
-          status: "Not found",
-          message: "Can't find product",
-        });
+    if (cart.quantity + parseInt(quantity) !== 0) {
+      await cart.update({
+        quantity: cart.quantity + quantity,
+      });
     }
-
-    await cart.update({
-      quantity: cart.quantity + quantity,
-    });
 
     res.status(201).json({
       status: "created",

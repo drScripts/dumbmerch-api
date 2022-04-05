@@ -2,6 +2,7 @@ const Joi = require("joi");
 const { request, response } = require("express");
 const { User } = require("../../models");
 const { compareSync } = require("bcrypt");
+const { getJwtToken } = require("../../helpers");
 
 /**
  *
@@ -12,7 +13,7 @@ module.exports = async (req, res) => {
   try {
     const scheme = Joi.object({
       email: Joi.string().email().required(),
-      password: Joi.string().min(8).required(),
+      password: Joi.string().required(),
     });
 
     const validation = scheme.validate(req.body);
@@ -40,11 +41,20 @@ module.exports = async (req, res) => {
         message: "Wrong password!",
       });
 
+    delete user.dataValues.password;
+
+    const jwt = getJwtToken(user.dataValues);
+
     return res.status(200).json({
       status: "success",
-      data: user,
+      data: {
+        user,
+        token: jwt,
+        token_type: "Bearer",
+      },
     });
   } catch (err) {
+    console.log(err);
     return res.status(500).json({
       status: "error",
       message: err.message,

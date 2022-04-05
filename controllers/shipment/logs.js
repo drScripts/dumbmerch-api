@@ -1,5 +1,6 @@
 const { request, response } = require("express");
-const { Cart } = require("../../models");
+const { Model } = require("sequelize");
+const { ShipmentLog } = require("../../models");
 
 /**
  *
@@ -8,18 +9,17 @@ const { Cart } = require("../../models");
  */
 module.exports = async (req, res) => {
   try {
-    const { id: user_id } = req.user;
+    const { transaction_id } = req.query;
 
-    const carts = await Cart.findAll({
-      include: ["product"],
-      where: {
-        user_id,
-      },
+    const shipmentLogs = await ShipmentLog.findAll({
+      where: { transaction_id },
     });
 
     res.send({
       status: "success",
-      data: carts,
+      data: {
+        shipmentLogs,
+      },
     });
   } catch (err) {
     console.log(err);

@@ -40,7 +40,7 @@ module.exports = async (req, res) => {
 
     return res.status(201).json({
       status: "created",
-      data: user,
+      data: { user },
     });
   } catch (err) {
     const code = err?.original?.constraint;

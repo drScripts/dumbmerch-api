@@ -2,8 +2,8 @@ const express = require("express");
 const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
+const middleware = require("./middleware");
 
-const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const shipmentRouter = require("./routes/shipment");
 const categoryRouter = require("./routes/category");
@@ -19,12 +19,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
-app.use("/shipments", shipmentRouter);
-app.use("/categories", categoryRouter);
-app.use("/products", productRouter);
-app.use("/carts", cartRouter);
-app.use("/transactions", transactionRouter);
+const prefix = "/api/v1";
+
+app.use(prefix, usersRouter);
+
+app.use(middleware);
+app.use(prefix, shipmentRouter);
+app.use(prefix, categoryRouter);
+app.use(prefix, productRouter);
+app.use(prefix, cartRouter);
+app.use(prefix, transactionRouter);
 
 module.exports = app;
