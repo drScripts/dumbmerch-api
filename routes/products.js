@@ -5,6 +5,7 @@ const {
   update,
   deleteData,
   show,
+  all,
 } = require("../controllers/product");
 const multer = require("multer");
 const path = require("path");
@@ -23,6 +24,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.get("/products", list);
+router.get("/products/all", all);
 router.get("/product/:id", show);
 
 router.post("/product", adminMiddleware, upload.single("image"), add);
